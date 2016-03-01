@@ -5,7 +5,52 @@
 <title>平移變換</title>
 <script language="javascript">
 
+var girdSize=80;
+var canvasObj;
+var ctx;
+var canvasWidth;
+var canvasHeight;
+function init()
+{
+	canvasObj=document.getElementById("MyCanvas");
+	ctx=canvasObj.getContext("2d");
+	canvasWidth=canvasObj.width;
+	canvasHeight=canvasObj.height;
+		
+}
 
+function drawCanvasGrid()
+{
+	var state=canvasContext.save();
+	ctx.fillStyle="#ffffff";
+	ctx.beginPath();
+	ctx.fillRect(0,0, canvasWidth, canvasHeight);
+	ctx.closePath();
+	ctx.strokeStyle='#00B000';
+	ctx.lineWidth=1;
+	ctx.lineCap='round';
+	ctx.beginPath();
+	for (i=0; i<=canvasWidth/gridSize; i++)
+	{
+		sx=ex=gridSize*i;
+		sy=0;
+		ey=canvasHeight;
+		ctx.moveTo(sx, sy);
+		ctx.lineTo(ex, ey);
+	}
+	for (i=0; i<=canvasHeight/gridSize;i++)
+	{
+		sx=0;
+		ex=canvasWidth;
+		sy=ey=gridSize*i;
+		ctx.moveTo(sx, sy);
+		ctx.lineTo(ex, ey);
+	}
+	ctx.closePath();
+	ctx.stroke();
+	ctx.restore(state);
+	
+}
 </script>
 
 </head>
